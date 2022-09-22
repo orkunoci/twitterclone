@@ -4,7 +4,7 @@ import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import clientPromise from '../../../lib/mongodb'
 
-export const options ={
+export const authOptions ={
   adapter:MongoDBAdapter(clientPromise),
    providers: [
      GoogleProvider({
@@ -18,15 +18,16 @@ export const options ={
    session:{
      strategy:'jwt'
    },
-   callbacks:{
-     session: async ({token: JWT ,session: Session })=>{
-       if(Session?.user && JWT )
-       {Session.user.id = JWT.sub;}
-       return Session;
-     }
-   }
+   callbacks: {
+    session: async ({token,session}) => {
+      if (session?.user && token?.sub) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+  },
  }
-export default NextAuth(options)
+export default NextAuth(authOptions)
  
  
 
