@@ -1,7 +1,8 @@
 import axios from "axios"
+import Link from "next/link";
 import { useState } from "react"
 import FlipNumbers from 'react-flip-numbers';
-export default function PostButtons({ commentsCount,likesCount:likesCountDefault=0,likedByMe:likedByMeDefault=false,id}) {
+export default function PostButtons({ commentsCount,likesCount:likesCountDefault=0,likedByMe:likedByMeDefault=false,id,username}) {
     const [likesCount,setLikesCount] =useState(likesCountDefault) 
     const [likedByMe,setLikedByMe]=useState()
     
@@ -18,12 +19,14 @@ export default function PostButtons({ commentsCount,likesCount:likesCountDefault
     return(
         
         <div className="flex justify-between mr-12 text-sm text-twitterLightGray mt-1">
-            <button className="flex">
+                <Link href={`/${username}/status/${id}`}>
+                <div className="flex cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                 </svg>
                 <span>0</span>
-          </button>
+            </div>
+                </Link>
             <button className="flex">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />

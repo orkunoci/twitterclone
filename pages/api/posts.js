@@ -15,6 +15,8 @@ export default async function handler(req,res){
             res.json({post})
         }else{
             const parent = req.query.parent || null;
+            const author = req.query.author;
+            const searchFilter =author ? {author} : {parent}
             const posts = await Post.find({parent}).populate('author').sort({createdAt: -1}).limit(20).exec()
             const postsLikedByMe= await Like.find({author:session?.user.id,post:posts.map(p=>p._id)})
             const idsLikedByMe=postsLikedByMe.map(like=>like.post);
