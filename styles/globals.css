@@ -8,3 +8,21 @@ body{
   background-color: #000;
   color: #fff;  
 }
+
+
+
+.spinner {
+   width: 56px;
+   height: 56px;
+   border-radius: 50%;
+   background: radial-gradient(farthest-side,#1fa0e1 94%,#0000) top/9px 9px no-repeat,
+          conic-gradient(#0000 30%,#1fa0e1);
+   -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+   animation: spinner-c7wet2 1s infinite linear;
+}
+
+@keyframes spinner-c7wet2 {
+   100% {
+      transform: rotate(1turn);
+   }
+}

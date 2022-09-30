@@ -23,11 +23,12 @@ export default function PostPage(){
             setReplies(response.data.posts)
             setRepliesLikedByMe(response.data.idsLikedByMe)
         })
-        console.log(replies)
+
     },[id])
 
 
-    return (<Layout> {!!post?._id && (
+    return (
+<Layout> {!!post?._id && (
     <div className="px-5 py-2">
         <TopNavigationLink/>
         <PostContent {...post} big/>
@@ -45,7 +46,7 @@ export default function PostPage(){
 return (
 
     <div key={reply.id} className="p-5 border-t border-twitterBorder">
-    <PostContent {...reply} likedByMe={repliesLikedByMe.includes(reply.id)}/>
+    <PostContent {...reply} likedByMe={repliesLikedByMe.includes(reply._id)}/>
     </div>
     )
 

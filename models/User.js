@@ -6,7 +6,7 @@ const  UserSchema = new Schema({
     image:String,
     cover:String,
     bio:String,
-    userName:String,
+    username:String,
 })
 
 const User = models?.User ||  model('User',UserSchema)

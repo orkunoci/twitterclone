@@ -35,7 +35,7 @@ export default function Home() {
 if(userInfoStatus === 'loading')
 return 'user info loading'
 
-if(userInfo && !userInfo?.user.userName){
+if(userInfo && !userInfo?.user.username){
   return <UsernameForm/>;
 }
 
