@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import PostContent from "../components/PostContent";
-import Postorm from "../components/PostForm";
+import Postform from "../components/PostForm";
 import UsernameForm from "../components/UsernameForm";
 import useUserInfo from "../hooks/useUserInfo";
 import Layout from "../components/Layout";
@@ -47,10 +47,18 @@ if(!userInfo){
   return (
     <Layout className="max-w-lg mx-auto border-l border-r border-twitterBorder min-h-screen">
       <h1 className="text-lg font-bold p-4">Home</h1>
-        <Postorm onPost={()=>{fetchHomePosts();}}/>
+        <Postform onPost={()=>{fetchHomePosts();}}/>
         <div className="">
           {posts.length > 0 && posts.map((post)=>{
             return <div className="border-t border-twitterBorder p-5" key={post._id}>
+            {post.parent && (
+              <div className="">
+                  <PostContent {...post.parent} />
+                  <div className="relative h-8 " >
+                    <div className="border-l-2 border-twitterBorder h-12 ml-6 -top-4 h-12 absolute"></div>
+                  </div>
+              </div>
+            )}
            <PostContent {...post} likedByMe={idsLikedByMe.includes(post._id)}/>
             </div>
           })}
