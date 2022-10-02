@@ -40,11 +40,12 @@ export default async function handler(req,res){
     }
 
     if(req.method === 'POST' ){
-        const {text,parent} =req.body;
+        const {text,parent,images} =req.body;
         const post = await Post.create({
             author:session.user.id,
             text,
-            parent
+            parent,
+            images
         })
         if(parent){
             const parentPost = await Post.findById(parent)

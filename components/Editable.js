@@ -3,7 +3,7 @@ import { FileDrop } from "react-file-drop";
 import Spinner from "./Spinner";
 export default function EditableImage({editable=false,type,src,onChange,className}) {
 
-    const [fileNear,setFileNear] =useState(false)
+const [fileNear,setFileNear] =useState(false)
 const [isFileOver,setIsFileOver] =useState(false)
 const [isUploading,setIsUploading]=useState(false)
 
@@ -17,11 +17,11 @@ function updateImage(files,e){
     setIsFileOver(false);
     
     e.preventDefault();
+    setFileNear(false)
+    setIsFileOver(false)
+    setIsUploading(true)
     const data =new FormData();
     data.append(type,files[0]);
-    
-    setIsUploading(true)
-    
     fetch('/api/upload',{
             method:'POST',
             body:data,

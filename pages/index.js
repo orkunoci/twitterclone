@@ -8,6 +8,7 @@ import useUserInfo from "../hooks/useUserInfo";
 import Layout from "../components/Layout";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import Spinner from "../components/Spinner";
 export default function Home() {
   const [posts,setPosts] = useState([]);
   const {userInfo,setUserInfo,status: userInfoStatus} = useUserInfo()
@@ -33,7 +34,7 @@ export default function Home() {
 
  
 if(userInfoStatus === 'loading')
-return 'user info loading'
+return <div className="flex items-center justify-center h-screen"><Spinner/></div>
 
 if(userInfo && !userInfo?.user.username){
   return <UsernameForm/>;
